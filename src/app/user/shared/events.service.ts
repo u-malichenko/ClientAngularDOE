@@ -22,35 +22,27 @@ export class EventsService {
             }));
     }
 
-    // getAll(): Observable<Event[]> {
-    //     console.log('http.get(`${environment.API_ENDPOINT}/api/v1/event`');
-    //     return this.http.get(`${environment.API_ENDPOINT}/api/v1/event`)
-    //         .pipe(map((response: { [key: string]: any }) => {
-    //             return Object
-    //                 .keys(response)
-    //                 .map(key => ({
-    //                     ...response[key],
-    //                     id: key,
-    //                     date: new Date(response[key].date)
-    //                 }));
-    //         }));
-    // }
-
-    // return this.http.get<AgentDetails>(urls).pipe(map(res => res['List']));
-
     getAll(): Observable<Event[]> {
         return this.http.get<Event[]>(`${environment.API_ENDPOINT}/api/v1/event`)
             .pipe(map((response) => response));
     }
 
+    //    $scope.loadEvent = function () {
+    //         console.log('GET '+API_ENDPOINT + '/api/v1/event/' + sharedParam.getEventId())
+    //         $http({
+    //             url: API_ENDPOINT + '/api/v1/event/' + sharedParam.getEventId(),
+    //             method: 'GET'
+    //         }).then(function (response) {
+    //             console.log(response.data);
+    //             $scope.event = response.data;
+    //         });
+    //     };
+
     getById(id: string): Observable<Event> {
-        return this.http.get<Event>(`${environment.API_ENDPOINT}/posts/${id}.json`)
-            .pipe(map((event: Event) => {
-                return {
-                    ...event, id,
-                    date: new Date(event.date)
-                };
-            }));
+        console.log('http.get<Event>(`${environment.API_ENDPOINT}/api/v1/event/${id}');
+        return this.http.get<Event>(`${environment.API_ENDPOINT}/api/v1/event/${id}`)
+            .pipe(
+                map((event: Event) => event));
     }
 
 
@@ -58,7 +50,13 @@ export class EventsService {
         return this.http.delete<void>(`${environment.API_ENDPOINT}/posts/${id}.json`);
     }
 
+
+    //         console.log('updateEvent $http.put '+ API_ENDPOINT + '/api/v1/event/, $scope.event = '+$scope.event.data)
+
+
     update(event: Event): Observable<Event> {
-        return this.http.patch<Event>(`${environment.API_ENDPOINT}/posts/${event.id}.json`, event);
+        console.log('event', event);
+        console.log('http.put<Event>(`${environment.API_ENDPOINT}/api/v1/event/${event.id}`, event)');
+        return this.http.patch<Event>(`${environment.API_ENDPOINT}/api/v1/event/${event.id}`, event);
     }
 }

@@ -8,8 +8,6 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {MainLayoutComponent} from './shared/components/main-layout/main-layout.component';
 import {HomePageComponent} from './home-page/home-page.component';
-import {EventPageComponent} from './user/event-page/event-page.component';
-import {EventComponent} from './user/shared/components/event/event.component';
 import {SharedModule} from './shared/shared.module';
 import {AuthInterceptor} from './shared/auth.interceptor';
 
@@ -28,8 +26,7 @@ const INTERCEPTOR_PROVIDER: Provider = {
     AppComponent,
     MainLayoutComponent,
     HomePageComponent,
-    EventPageComponent,
-    EventComponent
+
   ],
   imports: [
     BrowserModule,
