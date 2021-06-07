@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Event} from '../../shared/interfaces';
-import {EventsService} from '../../shared/events.service';
+import {EventsService} from '../shared/events.service';
 import {AlertService} from '../shared/services/alert.service';
 
 @Component({

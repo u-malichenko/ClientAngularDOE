@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Params} from '@angular/router';
-import {EventsService} from '../../shared/events.service';
+import {EventsService} from '../shared/events.service';
 import {switchMap} from 'rxjs/operators';
 import {Event} from '../../shared/interfaces';
 import {FormControl, FormGroup, Validators} from '@angular/forms';

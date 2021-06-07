@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 import {Routes, RouterModule, PreloadAllModules} from '@angular/router';
 import {MainLayoutComponent} from './shared/components/main-layout/main-layout.component';
 import {HomePageComponent} from './home-page/home-page.component';
-import {EventPageComponent} from './event-page/event-page.component';
+import {EventPageComponent} from './user/event-page/event-page.component';
 
 
 const routes: Routes = [
