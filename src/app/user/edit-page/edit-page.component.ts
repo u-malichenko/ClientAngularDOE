@@ -30,13 +30,16 @@ export class EditPageComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.route.params.pipe(
             switchMap((params: Params) => {
-                return this.eventsService.getById(params['id']);
+                return this.eventsService.getById(params.id);
             })
         ).subscribe((event: Event) => {
             this.event = event;
             this.form = new FormGroup({
                 title: new FormControl(event.title, Validators.required),
-                date: new FormControl(event.date, Validators.required)
+                date: new FormControl(event.date, Validators.required),
+                description: new FormControl(event.description),
+                eventUserList: new FormControl(event.eventUserList),
+                newEventUser: new FormControl()
             });
         });
     }
@@ -55,10 +58,20 @@ export class EditPageComponent implements OnInit, OnDestroy {
         this.uSub = this.eventsService.update({
             ...this.event,
             date: this.form.value.date,
-            title: this.form.value.title
+            title: this.form.value.title,
+            description: this.form.value.description,
+            eventUserList: this.form.value.eventUserList
         }).subscribe(() => {
             this.submitted = false;
             this.alert.success('event был обновлен');
         });
+    }
+
+    removeUser(eventUser: string) {
+        this.event.eventUserList.filter((userName) => userName !== eventUser);
+    }
+
+    addUser(eventUser: string) {
+        this.event.eventUserList.push(eventUser);
     }
 }

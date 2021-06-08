@@ -11,7 +11,7 @@ export class LocalizedCurrencyPipe implements PipeTransform {
     transform(
         value: any,
         currencyCode: string = 'RUB',
-        symbolDisplay: boolean = false,
+        symbolDisplay: string = 'symbol-narrow',
         digits: string = null
     ): string {
         return new CurrencyPipe(map[currencyCode]).transform(value, currencyCode, symbolDisplay, digits);

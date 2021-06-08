@@ -1,18 +1,18 @@
 <form [formGroup]="form" (ngSubmit)="submit()">
-  <h1>Создание нового event</h1>
+  <h1>Создание нового события</h1>
 
   <div
     class="form-control"
     [ngClass]="{invalid: form.get('title').touched && form.get('title').invalid}"
   >
-    <label for="title">Название event:</label>
+    <label for="title">Название:</label>
     <input id="title" type="text" formControlName="title">
     <div
       *ngIf="form.get('title').touched && form.get('title').invalid"
       class="validation"
     >
       <small *ngIf="form.get('title').errors.required">
-        Введите название event
+        Введите название, не может быть пустым!
       </small>
     </div>
   </div>
@@ -21,21 +21,25 @@
     class="form-control"
     [ngClass]="{invalid: form.get('date').touched && form.get('date').invalid}"
   >
-    <label for="date">Дата event:</label>
-    <input id="date" type="date" formControlName="date">
+    <label for="date">Дата проведения: </label>
+    <input id="date" type="datetime-local" formControlName="date">
     <div
       *ngIf="form.get('date').touched && form.get('date').invalid"
       class="validation"
     >
       <small *ngIf="form.get('date').errors.required">
-        Введите дату event
+        Введите дату. Дата проведения, не может быть пустой!
       </small>
     </div>
   </div>
+
+
+  <label for="description">Описание:</label>
+  <input id="description" type="text" formControlName="description">
 
   <button
     type="submit"
     class="btn btn-block btn-dark"
     [disabled]="form.invalid"
-  >Создать event</button>
+  >Создать</button>
 </form>
