@@ -25,7 +25,9 @@ export class DashboardPageComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.eSub = this.eventsService.getAll().subscribe(posts => {
             this.events = posts;
+            console.log(this.events);
         });
+
     }
 
     remove(id: string) {

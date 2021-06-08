@@ -55,8 +55,7 @@ export class EventsService {
 
 
     update(event: Event): Observable<Event> {
-        console.log('event', event);
-        console.log('http.put<Event>(`${environment.API_ENDPOINT}/api/v1/event/${event.id}`, event)');
-        return this.http.patch<Event>(`${environment.API_ENDPOINT}/api/v1/event/${event.id}`, event);
+        console.log('http.patch Event (${environment.API_ENDPOINT}/api/v1/event, event)', event);
+        return this.http.patch<Event>(`${environment.API_ENDPOINT}/api/v1/event`, event);
     }
 }
