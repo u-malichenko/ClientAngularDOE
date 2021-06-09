@@ -43,9 +43,16 @@
 
         <div *ngIf="event.eventUserList.length; else loading" class="padding-inside">
             <div class="form-control">
-                <input id="newEventUser" type="text" placeholder="Имя участника" formControlName="newEventUser" >
-                <a (click)="addUser(form.get('newEventUser').value)">Добавить участника</a>
+                <input id="newEventUser" type="text" placeholder="Имя участника" formControlName="newEventUser">
+                <button
+                        class="btn btn-primary"
+                        style="margin-top: 5px"
+                        (click)="addUser(form.get('newEventUser').value)"
+                >
+                    Добавить участника
+                </button>
             </div>
+
             <label>Список участников:</label>
             <table>
                 <thead>

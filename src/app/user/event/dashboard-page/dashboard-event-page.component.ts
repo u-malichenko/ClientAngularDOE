@@ -1,15 +1,15 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {EventsService} from '../shared/events.service';
-import {Event} from '../../shared/interfaces';
+import {EventsService} from '../../shared/events.service';
+import {Event} from '../../../shared/interfaces';
 import {Subscription} from 'rxjs';
-import {AlertService} from '../../shared/alert.service';
+import {AlertService} from '../../../shared/alert.service';
 
 @Component({
     selector: 'app-dashboard-page',
-    templateUrl: './dashboard-page.component.html',
-    styleUrls: ['./dashboard-page.component.scss']
+    templateUrl: './dashboard-event-page.component.html',
+    styleUrls: ['./dashboard-event-page.component.scss']
 })
-export class DashboardPageComponent implements OnInit, OnDestroy {
+export class DashboardEventPageComponent implements OnInit, OnDestroy {
 
     events: Event[] = [];
     eSub: Subscription;

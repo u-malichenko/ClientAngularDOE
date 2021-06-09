@@ -1,16 +1,16 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {Event} from '../../shared/interfaces';
-import {EventsService} from '../shared/events.service';
-import {AlertService} from '../../shared/alert.service';
+import {Event} from '../../../shared/interfaces';
+import {EventsService} from '../../shared/events.service';
+import {AlertService} from '../../../shared/alert.service';
 
 
 @Component({
     selector: 'app-create-page',
-    templateUrl: './create-page.component.html',
-    styleUrls: ['./create-page.component.scss']
+    templateUrl: './create-event-page.component.html',
+    styleUrls: ['./create-event-page.component.scss']
 })
-export class CreatePageComponent implements OnInit {
+export class CreateEventPageComponent implements OnInit {
 
     form: FormGroup;
 
