@@ -42,10 +42,13 @@
         </div>
 
         <div *ngIf="event.eventUserList.length; else loading" class="padding-inside">
-            <div class="form-control">
+            <div
+                    class="form-control"
+                    style="width:300px"
+            >
                 <input id="newEventUser" type="text" placeholder="Имя участника" formControlName="newEventUser">
                 <button
-                        class="btn btn-primary"
+                        class="btn btn-block btn-success"
                         style="margin-top: 5px"
                         (click)="addUser(form.get('newEventUser').value)"
                 >

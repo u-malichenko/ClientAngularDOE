@@ -24,7 +24,8 @@ export class EditEventPageComponent implements OnInit, OnDestroy {
     constructor(
         private route: ActivatedRoute,
         private eventsService: EventsService,
-        private alert: AlertService
+        private alert: AlertService,
+        private router: Router
     ) {
     }
 
@@ -73,6 +74,7 @@ export class EditEventPageComponent implements OnInit, OnDestroy {
         ).subscribe(() => {
             this.submitted = false;
             this.alert.success('event был обновлен');
+            this.router.navigate(['/user', 'dashboard']);
         });
     }
 
