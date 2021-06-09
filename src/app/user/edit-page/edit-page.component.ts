@@ -5,7 +5,7 @@ import {catchError, switchMap} from 'rxjs/operators';
 import {Event} from '../../shared/interfaces';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Subscription, throwError} from 'rxjs';
-import {AlertService} from '../shared/services/alert.service';
+import {AlertService} from '../../shared/alert.service';
 import {HttpErrorResponse} from '@angular/common/http';
 
 @Component({
@@ -65,7 +65,7 @@ export class EditPageComponent implements OnInit, OnDestroy {
         }).pipe(
             catchError((error: HttpErrorResponse) => {
                 if (error.status === 403) {
-                    this.alert.danger('имя пользователя не существует, изменения не сохранены');
+                    this.alert.danger(`имя пользователя не существует, изменения не сохранены. ${error.message.toString()}`);
                 }
                 this.submitted = false;
                 return throwError(error);

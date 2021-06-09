@@ -13,16 +13,7 @@ export class EventsService {
 
     create(event: Event) {
         console.log('create(event: Event): ', event);
-        // const r: Observable<Event> =
         return this.http.post(`${environment.API_ENDPOINT}/api/v1/event`, event);
-        //     .pipe(map((response: Event) => {
-        //         return {
-        //             ...event,
-        //             id: response.id
-        //         };
-        //     }));
-        // console.log(r.toPromise());
-        // return r;
     }
 
     getAll(): Observable<Event[]> {

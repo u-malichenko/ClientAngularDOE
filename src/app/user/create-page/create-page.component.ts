@@ -2,7 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Event} from '../../shared/interfaces';
 import {EventsService} from '../shared/events.service';
-import {AlertService} from '../shared/services/alert.service';
+import {AlertService} from '../../shared/alert.service';
+
 
 @Component({
     selector: 'app-create-page',

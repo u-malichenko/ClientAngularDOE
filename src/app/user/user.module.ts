@@ -11,8 +11,7 @@ import {EditPageComponent} from './edit-page/edit-page.component';
 import {SharedModule} from '../shared/shared.module';
 import {AuthGuard} from './shared/services/auth.guard';
 import {SearchPipe} from './shared/pipe/search.pipe';
-import { AlertComponent } from './shared/components/alert/alert.component';
-import {AlertService} from './shared/services/alert.service';
+import { AlertComponent } from '../shared/components/alert/alert.component';
 import {LocalizedCurrencyPipe} from './shared/pipe/localized-currency.pipe';
 
 @NgModule({
@@ -44,7 +43,7 @@ import {LocalizedCurrencyPipe} from './shared/pipe/localized-currency.pipe';
     ])
   ],
   exports: [RouterModule],
-  providers: [AuthGuard, AlertService]
+  providers: [AuthGuard]
 })
 export class UserModule {
 

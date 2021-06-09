@@ -2,7 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {EventsService} from '../shared/events.service';
 import {Event} from '../../shared/interfaces';
 import {Subscription} from 'rxjs';
-import {AlertService} from '../shared/services/alert.service';
+import {AlertService} from '../../shared/alert.service';
 
 @Component({
     selector: 'app-dashboard-page',
