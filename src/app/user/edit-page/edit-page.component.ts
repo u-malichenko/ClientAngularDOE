@@ -68,8 +68,9 @@ export class EditPageComponent implements OnInit, OnDestroy {
     }
 
     removeUser(eventUser: string) {
-        this.event.eventUserList = this.event.eventUserList.filter(ul => ul !== eventUser);
+        this.event.eventUserList.splice(this.event.eventUserList.indexOf(eventUser), 1);
         console.log(this.event.eventUserList);
+        console.log(this.event);
 
     }
 
