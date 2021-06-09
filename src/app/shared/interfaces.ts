@@ -20,6 +20,7 @@ export interface Event {
     eventUserList?: string[];
     amountOfExpense?: string;
     expenseList?: string[];
+    description?: string;
 
     // private List<String> eventUserLIst;
     // private List<ExpenseDto> expenseList;

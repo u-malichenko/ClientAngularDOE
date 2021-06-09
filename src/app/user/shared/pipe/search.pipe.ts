@@ -1,5 +1,5 @@
 import {Pipe, PipeTransform} from '@angular/core';
-import {Event} from '../../shared/interfaces';
+import {Event} from '../../../shared/interfaces';
 
 @Pipe({
   name: 'searchPosts'

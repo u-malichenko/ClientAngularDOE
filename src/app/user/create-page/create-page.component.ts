@@ -2,7 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Event} from '../../shared/interfaces';
 import {EventsService} from '../shared/events.service';
-import {AlertService} from '../shared/services/alert.service';
+import {AlertService} from '../../shared/alert.service';
+
 
 @Component({
     selector: 'app-create-page',
@@ -23,6 +24,7 @@ export class CreatePageComponent implements OnInit {
         this.form = new FormGroup({
             title: new FormControl(null, Validators.required),
             date: new FormControl(null, Validators.required),
+            description: new FormControl(null)
         });
     }
 
@@ -33,12 +35,13 @@ export class CreatePageComponent implements OnInit {
 
         const event: Event = {
             title: this.form.value.title,
-            date: new Date(this.form.value.date)
+            date: new Date(this.form.value.date),
+            description: this.form.value.description
         };
 
         this.eventsService.create(event).subscribe(() => {
             this.form.reset();
-            this.alert.success('event был создан');
+            this.alert.success('Новое событие было успешно создано.');
         });
     }
 

@@ -8,36 +8,32 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {MainLayoutComponent} from './shared/components/main-layout/main-layout.component';
 import {HomePageComponent} from './home-page/home-page.component';
-import {EventPageComponent} from './user/event-page/event-page.component';
-import {EventComponent} from './user/shared/components/event/event.component';
 import {SharedModule} from './shared/shared.module';
 import {AuthInterceptor} from './shared/auth.interceptor';
+import {AlertService} from './shared/alert.service';
 
-
-registerLocaleData(ruLocale, 'ru')
-
+registerLocaleData(ruLocale, 'ru');
 
 const INTERCEPTOR_PROVIDER: Provider = {
-  provide: HTTP_INTERCEPTORS,
-  multi: true,
-  useClass: AuthInterceptor
-}
+    provide: HTTP_INTERCEPTORS,
+    multi: true,
+    useClass: AuthInterceptor
+};
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    MainLayoutComponent,
-    HomePageComponent,
-    EventPageComponent,
-    EventComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    SharedModule
-  ],
-  providers: [INTERCEPTOR_PROVIDER],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        MainLayoutComponent,
+        HomePageComponent,
+
+    ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        SharedModule
+    ],
+    providers: [INTERCEPTOR_PROVIDER, AlertService],
+    bootstrap: [AppComponent]
 })
 export class AppModule {
 }
