@@ -15,6 +15,7 @@ import {ActivatedRoute, Params} from '@angular/router';
 export class CreateExpPageComponent implements OnInit {
     form: FormGroup;
     event: Event;
+    exp: Exp;
 
     constructor(
         private eventsService: EventsService,
@@ -39,11 +40,12 @@ export class CreateExpPageComponent implements OnInit {
         this.form = new FormGroup({
             buyer: new FormControl(null, Validators.required),
             comment: new FormControl(null, Validators.required),
-            event: new FormControl(null),
             expenseDate: new FormControl(null, Validators.required),
             totalExpenseSum: new FormControl(null, [Validators.required, Validators.pattern(/^[.\d]+$/)]),
-            directPayerMap: new FormControl(null, Validators.required),
-            partitialPayerMap: new FormControl(null, Validators.required)
+            newDirectUser: new FormControl(null, Validators.required),
+            newDirectUserSum: new FormControl(null, [Validators.required, Validators.pattern(/^[.\d]+$/)]),
+            newPartitialUser: new FormControl(null, Validators.required),
+            newPartitialUserPart: new FormControl(null, [Validators.required, Validators.pattern(/^[.\d]+$/)])
         });
     }
 
@@ -57,9 +59,10 @@ export class CreateExpPageComponent implements OnInit {
             comment: this.form.value.comment,
             event: this.event.title,
             expenseDate: new Date(this.form.value.date),
-            totalExpenseSum: this.form.value.totalExpenseSum,
-            directPayerMap: this.form.value.directPayerMap,
-            partitialPayerMap: this.form.value.partitialPayerMap
+            totalExpenseSum: this.form.value.totalExpenseSum
+            // ,
+            // directPayerMap: this.exp.directPayerMap,
+            // partitialPayerMap: this.exp.partitialPayerMap
         };
 
         this.extsService.create(exp).subscribe(() => {
@@ -75,9 +78,9 @@ export class CreateExpPageComponent implements OnInit {
 
     }
 
-    addUser(eventUser: string) {
-        this.form.get('newEventUser').reset();
-        this.event.eventUserList.push(eventUser);
+    addUser(newDirectUser: string, newDirectUserSum: string) {
+        this.form.get('newDirectUser').reset();
+        this.form.get('newDirectUserSum').reset();
+        // this.exp.directPayerMap.push(newDirectUser, newDirectUserSum);
     }
-
 }
