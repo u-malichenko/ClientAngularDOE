@@ -25,7 +25,6 @@ export class EditEventPageComponent implements OnInit, OnDestroy {
         private route: ActivatedRoute,
         private eventsService: EventsService,
         private alert: AlertService,
-        private router: Router
     ) {
     }
 
@@ -65,6 +64,7 @@ export class EditEventPageComponent implements OnInit, OnDestroy {
             eventUserList: this.form.value.eventUserList
         }).pipe(
             catchError((error: HttpErrorResponse) => {
+                console.log( error);
                 if (error.status === 403) {
                     this.alert.danger(`имя пользователя не существует, изменения не сохранены. ${error.message.toString()}`);
                 }
@@ -74,7 +74,7 @@ export class EditEventPageComponent implements OnInit, OnDestroy {
         ).subscribe(() => {
             this.submitted = false;
             this.alert.success('event был обновлен');
-            this.router.navigate(['/user', 'dashboard']);
+            // this.router.navigate(['/user', 'dashboard']);
         });
     }
 

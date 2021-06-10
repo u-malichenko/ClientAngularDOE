@@ -1,1 +1,111 @@
-<p>create-exp-page works!</p>
+<form [formGroup]="form" (ngSubmit)="submit()">
+    <h1>Создание новой траты</h1>
+
+    <div
+            class="form-control"
+            [ngClass]="{invalid: form.get('buyer').touched && form.get('buyer').invalid}"
+    >
+        <label for="buyer">Плательщик:</label>
+        <input id="buyer" type="text" formControlName="buyer">
+        <div
+                *ngIf="form.get('buyer').touched && form.get('buyer').invalid"
+                class="validation"
+        >
+            <small *ngIf="form.get('buyer').errors.required">
+                Введите плательщика, это поле не может быть пустым!
+            </small>
+        </div>
+    </div>
+
+    <div
+            class="form-control"
+            [ngClass]="{invalid: form.get('comment').touched && form.get('comment').invalid}"
+    >
+        <label for="comment">Коментарий:</label>
+        <input id="comment" type="text" formControlName="comment">
+        <div
+                *ngIf="form.get('comment').touched && form.get('comment').invalid"
+                class="validation"
+        >
+            <small *ngIf="form.get('comment').errors.required">
+                Введите коментарий, это поле не может быть пустым так как это название. коментарий добавим после изменения бэка)!
+            </small>
+        </div>
+    </div>
+
+    <div
+            class="form-control"
+            [ngClass]="{invalid: form.get('expenseDate').touched && form.get('expenseDate').invalid}"
+    >
+        <label for="expenseDate">Дата: </label>
+        <input id="expenseDate" type="datetime-local" formControlName="expenseDate">
+        <div
+                *ngIf="form.get('expenseDate').touched && form.get('expenseDate').invalid"
+                class="validation"
+        >
+            <small *ngIf="form.get('expenseDate').errors.required">
+                Введите дату и время. Дата траты, не может быть пустой!
+            </small>
+        </div>
+    </div>
+
+
+    <div
+            class="form-control"
+            [ngClass]="{invalid: form.get('totalExpenseSum').touched && form.get('totalExpenseSum').invalid}"
+    >
+        <label for="totalExpenseSum">Сумма: </label>
+        <input id="totalExpenseSum" type="text" formControlName="totalExpenseSum">
+        <div
+                *ngIf="form.get('totalExpenseSum').touched && form.get('totalExpenseSum').invalid"
+                class="validation"
+        >
+            <small *ngIf="form.get('totalExpenseSum').errors.required">
+                Введите сумму траты, она не может быть пустой!
+            </small>
+            <small *ngIf="form.get('totalExpenseSum').errors.pattern">
+                НЕ верное число! pattern(/^[.\d]+$/)
+            </small>
+        </div>
+    </div>
+
+<!--    <div *ngIf="event.eventUserList.length; else loading" class="padding-inside">-->
+<!--        <div-->
+<!--                class="form-control"-->
+<!--                style="width:300px"-->
+<!--        >-->
+<!--            <input id="newEventUser" type="text" placeholder="Имя участника" formControlName="newEventUser">-->
+<!--            <a-->
+<!--                    (click)="addUser(form.get('newEventUser').value)"-->
+<!--                    class="text-danger"-->
+<!--            >Добавить участника</a>-->
+<!--        </div>-->
+
+<!--        <label>Список участников:</label>-->
+<!--        <table>-->
+<!--            <thead>-->
+<!--            <tr>-->
+<!--                <th>#</th>-->
+<!--                <th>Ник</th>-->
+<!--                <th>Действия</th>-->
+<!--            </tr>-->
+<!--            </thead>-->
+<!--            <tbody>-->
+<!--            <tr *ngFor="let eventUser of event.eventUserList; let idx = index">-->
+<!--                <td>{{ idx + 1 }}</td>-->
+<!--                <td>{{ eventUser }}</td>-->
+<!--                <td>-->
+<!--                    <a (click)="removeUser(eventUser)">Удалить</a>-->
+<!--                </td>-->
+<!--            </tr>-->
+<!--            </tbody>-->
+<!--        </table>-->
+<!--    </div>-->
+
+    <button
+            type="submit"
+            class="btn btn-block btn-primary"
+            style="margin-top: 5px"
+            [disabled]="form.invalid"
+    >Создать</button>
+</form>

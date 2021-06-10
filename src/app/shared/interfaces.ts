@@ -6,8 +6,6 @@ export interface User {
 }
 
 export interface AuthResponse {
-    // idToken?: string;
-    // expiresIn?: string;
     token: string;
     username: string;
 }
@@ -22,12 +20,18 @@ export interface Event {
     expenseList?: string[];
     description?: string;
 
-    // private List<String> eventUserLIst;
-    // private List<ExpenseDto> expenseList;
 }
 
-export interface FbCreateResponse {
-    name: string;
+export interface Exp {
+    id?: string;
+    buyer: string;
+    comment?: string;
+    event: string;
+    expenseDate: Date;
+    totalExpenseSum?: string;
+    numberOfExpenseParticipants?: string;
+    directPayerMap?: string[];
+    partitialPayerMap?: string[];
 }
 
 export interface Token {
