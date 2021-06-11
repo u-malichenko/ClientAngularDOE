@@ -22,13 +22,13 @@ export interface Event {
 
 }
 
-export interface DirectPayerMap {
-    name: string;
+export interface DirectPayer {
+    userName: string;
     sum: string;
 }
 
-export interface PartitialPayerMap {
-    name: string;
+export interface PartitialPayer {
+    userName: string;
     cof: string;
 }
 
@@ -40,8 +40,8 @@ export interface Exp {
     expenseDate: Date;
     totalExpenseSum?: string;
     numberOfExpenseParticipants?: string;
-    directPayerMap?: DirectPayerMap[];
-    partitialPayerMap?: PartitialPayerMap[];
+    directPayerMap?: DirectPayer[];
+    partitialPayerMap?: PartitialPayer[];
 }
 
 export interface Token {

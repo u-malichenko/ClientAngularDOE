@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {EventsService} from '../../../shared/events.service';
 import {AlertService} from '../../../../shared/alert.service';
-import {Event, Exp} from '../../../../shared/interfaces';
+import {DirectPayer, Event, Exp, PartitialPayer} from '../../../../shared/interfaces';
 import {ExtsService} from '../../../shared/exts.service';
 import {switchMap} from 'rxjs/operators';
 import {ActivatedRoute, Params} from '@angular/router';
@@ -13,9 +13,16 @@ import {ActivatedRoute, Params} from '@angular/router';
     styleUrls: ['./create-exp-page.component.scss']
 })
 export class CreateExpPageComponent implements OnInit {
+
     form: FormGroup;
     event: Event;
-    exp: Exp;
+
+    directPayerMap: DirectPayer[] = [];
+    directPayer: DirectPayer;
+
+    partitialPayerMap: PartitialPayer[] = [];
+    partitialPayer: PartitialPayer;
+
 
     constructor(
         private eventsService: EventsService,
@@ -38,19 +45,24 @@ export class CreateExpPageComponent implements OnInit {
         );
 
         this.form = new FormGroup({
+            // title: new FormControl(null),
             buyer: new FormControl(null, Validators.required),
             comment: new FormControl(null, Validators.required),
             expenseDate: new FormControl(null, Validators.required),
             totalExpenseSum: new FormControl(null, [Validators.required, Validators.pattern(/^[.\d]+$/)]),
             newDirectUser: new FormControl(null, Validators.required),
-            newDirectUserSum: new FormControl(null, [Validators.required, Validators.pattern(/^[.\d]+$/)]),
+            newDirectSum: new FormControl(null, [Validators.required, Validators.pattern(/^[.\d]+$/)]),
             newPartitialUser: new FormControl(null, Validators.required),
-            newPartitialUserPart: new FormControl(null, [Validators.required, Validators.pattern(/^[.\d]+$/)])
+            newPartitialPart: new FormControl(null, [Validators.required, Validators.pattern(/^[.\d]+$/)])
         });
     }
 
     submit() {
-        if (this.form.invalid) {
+        if (this.form.get('buyer').invalid
+            || this.form.get('comment').invalid
+            || this.form.get('expenseDate').invalid
+            || this.form.get('totalExpenseSum').invalid) {
+            console.log('submit invalid');
             return;
         }
 
@@ -59,28 +71,48 @@ export class CreateExpPageComponent implements OnInit {
             comment: this.form.value.comment,
             event: this.event.title,
             expenseDate: new Date(this.form.value.date),
-            totalExpenseSum: this.form.value.totalExpenseSum
-            // ,
-            // directPayerMap: this.exp.directPayerMap,
-            // partitialPayerMap: this.exp.partitialPayerMap
+            totalExpenseSum: this.form.value.totalExpenseSum,
+            directPayerMap: this.directPayerMap,
+            partitialPayerMap: this.partitialPayerMap
         };
-
+        console.log('submit().create(exp)', exp);
         this.extsService.create(exp).subscribe(() => {
             this.form.reset();
             this.alert.success('Новая трата успешно добавлена.');
         });
     }
 
-    removeUser(eventUser: string) {
-        this.event.eventUserList.splice(this.event.eventUserList.indexOf(eventUser), 1);
-        console.log(this.event.eventUserList);
-        console.log(this.event);
+    removeDirectUser(directPayer: DirectPayer) {
+        this.directPayerMap.splice(this.directPayerMap.indexOf(directPayer), 1);
+        console.log(this.partitialPayerMap);
+    }
+
+    removePartitialUser(partitialPayer: PartitialPayer) {
+        this.partitialPayerMap.splice(this.partitialPayerMap.indexOf(partitialPayer), 1);
+        console.log(this.partitialPayerMap);
+    }
+
+    addDirectUser(newDirectUser: string, newDirectSum: string) {
+        const directPayer: DirectPayer = {
+            userName: newDirectUser,
+            sum: newDirectSum
+        };
+        console.log(directPayer);
+        this.directPayerMap.push(directPayer);
+        this.form.get('newDirectUser').reset();
+        this.form.get('newDirectSum').reset();
 
     }
 
-    addUser(newDirectUser: string, newDirectUserSum: string) {
-        this.form.get('newDirectUser').reset();
-        this.form.get('newDirectUserSum').reset();
-        // this.exp.directPayerMap.push(newDirectUser, newDirectUserSum);
+    addPartitialUser(newPartitialUser: string, newPartitialPart: string) {
+        const partitialPayer: PartitialPayer = {
+            userName: newPartitialUser,
+            cof: newPartitialPart
+        };
+        console.log(partitialPayer);
+        this.partitialPayerMap.push(partitialPayer);
+        this.form.get('newPartitialUser').reset();
+        this.form.get('newPartitialPart').reset();
+
     }
 }
