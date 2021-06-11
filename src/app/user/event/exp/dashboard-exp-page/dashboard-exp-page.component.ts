@@ -3,7 +3,7 @@ import {Subscription} from 'rxjs';
 
 import {Event, Exp} from '../../../../shared/interfaces';
 import {AlertService} from '../../../../shared/alert.service';
-import {ExtsService} from '../../../shared/exts.service';
+import {ExpsService} from '../../../shared/exps.service';
 import {ActivatedRoute, Params} from '@angular/router';
 import {switchMap} from 'rxjs/operators';
 import {EventsService} from '../../../shared/events.service';
@@ -24,7 +24,7 @@ export class DashboardExpPageComponent implements OnInit, OnDestroy {
     constructor(
         private route: ActivatedRoute,
         private eventsService: EventsService,
-        private extsService: ExtsService,
+        private extsService: ExpsService,
         private alert: AlertService
     ) {
     }

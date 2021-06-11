@@ -31,7 +31,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let exp of exps | searchExps:searchStr; let idx = index">
+            <tr *ngFor="let exp of exps | searchExps: searchStr; let idx = index">
                 <td>{{ idx + 1 }}</td>
                 <td>{{ exp.buyer }}</td>
                 <td>{{ exp.comment }}</td>
@@ -40,7 +40,7 @@
                 <td>
                     <button
                             class="btn btn-success"
-                            [routerLink]="['/user', 'event', exp.id, 'edit']"
+                            [routerLink]="['/user', 'event', event.id, 'exp', exp.id, 'edit']"
                     >
                         Изменить
                     </button>

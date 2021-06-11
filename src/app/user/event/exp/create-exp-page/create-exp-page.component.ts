@@ -3,7 +3,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {EventsService} from '../../../shared/events.service';
 import {AlertService} from '../../../../shared/alert.service';
 import {DirectPayer, Event, Exp, PartitialPayer} from '../../../../shared/interfaces';
-import {ExtsService} from '../../../shared/exts.service';
+import {ExpsService} from '../../../shared/exps.service';
 import {switchMap} from 'rxjs/operators';
 import {ActivatedRoute, Params} from '@angular/router';
 
@@ -26,7 +26,7 @@ export class CreateExpPageComponent implements OnInit {
 
     constructor(
         private eventsService: EventsService,
-        private extsService: ExtsService,
+        private expsService: ExpsService,
         private route: ActivatedRoute,
         private alert: AlertService
     ) {
@@ -45,7 +45,6 @@ export class CreateExpPageComponent implements OnInit {
         );
 
         this.form = new FormGroup({
-            // title: new FormControl(null),
             buyer: new FormControl(null, Validators.required),
             comment: new FormControl(null, Validators.required),
             expenseDate: new FormControl(null, Validators.required),
@@ -76,7 +75,7 @@ export class CreateExpPageComponent implements OnInit {
             partitialPayerMap: this.partitialPayerMap
         };
         console.log('submit().create(exp)', exp);
-        this.extsService.create(exp).subscribe(() => {
+        this.expsService.create(exp).subscribe(() => {
             this.form.reset();
             this.alert.success('Новая трата успешно добавлена.');
         });
@@ -113,6 +112,5 @@ export class CreateExpPageComponent implements OnInit {
         this.partitialPayerMap.push(partitialPayer);
         this.form.get('newPartitialUser').reset();
         this.form.get('newPartitialPart').reset();
-
     }
 }

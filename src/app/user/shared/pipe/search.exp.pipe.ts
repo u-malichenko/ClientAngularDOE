@@ -4,7 +4,7 @@ import {Exp} from '../../../shared/interfaces';
 @Pipe({
     name: 'searchExps'
 })
-export class SearchExtPipe implements PipeTransform {
+export class SearchExpPipe implements PipeTransform {
     transform(exps: Exp[], search = ''): Exp[] {
         if (!search.trim()) {
             return exps;

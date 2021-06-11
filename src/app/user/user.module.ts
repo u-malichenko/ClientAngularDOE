@@ -11,7 +11,7 @@ import {EditEventPageComponent} from './event/edit-event-page/edit-event-page.co
 import {SharedModule} from '../shared/shared.module';
 import {AuthGuard} from './shared/services/auth.guard';
 import {SearchPostsPipe} from './shared/pipe/search.post.pipe';
-import {SearchExtPipe} from './shared/pipe/search.ext.pipe';
+import {SearchExpPipe} from './shared/pipe/search.exp.pipe';
 import { AlertComponent } from '../shared/components/alert/alert.component';
 import {LocalizedCurrencyPipe} from './shared/pipe/localized-currency.pipe';
 import { DashboardExpPageComponent } from './event/exp/dashboard-exp-page/dashboard-exp-page.component';
@@ -27,7 +27,7 @@ import { EditExpPageComponent } from './event/exp/edit-exp-page/edit-exp-page.co
     CreateEventPageComponent,
     EditEventPageComponent,
     SearchPostsPipe,
-    SearchExtPipe,
+    SearchExpPipe,
     LocalizedCurrencyPipe,
     AlertComponent,
     DashboardExpPageComponent,

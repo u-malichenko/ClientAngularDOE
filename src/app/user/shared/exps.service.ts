@@ -7,7 +7,7 @@ import {map} from 'rxjs/operators';
 import {environment} from '../../../environments/environment';
 
 @Injectable({providedIn: 'root'})
-export class ExtsService {
+export class ExpsService {
     constructor(private http: HttpClient) {
     }
 
